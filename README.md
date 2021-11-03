@@ -18,7 +18,7 @@ After you have installed `git`:
 
 This downloads the `git` repository and will allow you to install the server with a premade script
 
-#### `cd avp2server \ chmod +x ./install.sh`<br /><br />
+#### `cd avp2server && chmod +x ./install.sh`<br /><br />
 
 Now we simply launch the script
 
