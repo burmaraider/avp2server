@@ -14,7 +14,7 @@ Once you have a Linux system (or VPS) up and running you will need to install gi
 
 After you have installed `git`:
 
-#### `git clone https://github.com/burmaraider/avp2server`<br /><br />
+#### `git clone https://github.com/burmaraider/avp2server.git`<br /><br />
 
 This downloads the `git` repository and will allow you to install the server with a premade script
 
