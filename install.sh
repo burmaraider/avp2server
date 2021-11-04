@@ -18,7 +18,7 @@ fi
 # Install dependencies
 if [ "$DISTRO" == "Ubuntu" ]; then
     sudo apt-get update
-    sudo apt install -y docker
+    sudo apt install -y docker.io
     sudo groupadd docker
     sudo usermod -aG docker $USER
 elif [ "$DISTRO" == "Debian" ]; then
