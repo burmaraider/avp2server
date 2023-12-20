@@ -1,53 +1,25 @@
+#Modified by Xevrac - https://xevnet.au
+#Tweaked for Alpine Linux compatibility 
 #!/bin/bash
 
+apk update
+apk add wget
+apk add docker.io
 
-
-# Determine OS platform
-UNAME=$(uname | tr "[:upper:]" "[:lower:]")
-# If Linux, try to determine specific distribution
-if [ "$UNAME" == "linux" ]; then
-    # If available, use LSB to identify distribution
-    if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
-        export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
-    # Otherwise, use release info file
-    else
-        export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
-    fi
-fi
-
-# Install dependencies
-if [ "$DISTRO" == "Ubuntu" ]; then
-    sudo apt-get update
-    sudo apt install -y docker.io
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-elif [ "$DISTRO" == "Debian" ]; then
-    sudo apt-get update
-    sudo apt install -y docker
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-elif [ "$DISTRO" == "Arch" ]; then
-    yay -Sy docker
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-fi
-
-
-
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
-sudo systemctl start docker
+rc-service docker.service start
+rc-service containerd.service start
+rc-service docker start
 
 # Download and install Docker Image
-sudo docker pull lithfaq/avp2mspserver
+docker pull lithfaq/avp2mspserver
 clear
 printf "Docker Image installed.\n"
 printf "After you set a password please type in 'exit'\n"
 printf "Without the quotes\n"
-sudo docker run -it --name avp2server --network host --restart unless-stopped lithfaq/avp2mspserver
-sudo docker start avp2server
+docker run -it --name avp2server --network host --restart unless-stopped lithfaq/avp2mspserver
+docker start avp2server
 
-externalip=$(dig @resolver4.opendns.com myip.opendns.com +short)
+externalip=$(wget -qO- ifconfig.me/ip)
 
 clear
 echo -e "\n\nTo use Docker commands in the future without the use of 'sudo', please logout and then log back in."
