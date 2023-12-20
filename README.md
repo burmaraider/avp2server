@@ -9,7 +9,7 @@
 ## How to use
 
 Once you have a Linux system (or VPS) up and running you will need to install git (this assumes you are using Ubuntu/Debian):
-NB: If you're using Alpine Linux, use the aptly named alpine-linux `install.sh`
+NB: If you're using Alpine Linux, use the aptly named `install_alpine-linux.sh`
 
 #### `sudo apt install git`<br /><br />
 #### `for Alpine: apk add git`<br /><br />
