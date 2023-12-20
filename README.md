@@ -9,8 +9,10 @@
 ## How to use
 
 Once you have a Linux system (or VPS) up and running you will need to install git (this assumes you are using Ubuntu/Debian):
+NB: If you're using Alpine Linux, use the aptly named alpine-linux `install.sh`
 
 #### `sudo apt install git`<br /><br />
+#### `for Alpine: apk add git`<br /><br />
 
 After you have installed `git`:
 
@@ -19,10 +21,14 @@ After you have installed `git`:
 This downloads the `git` repository and will allow you to install the server with a premade script
 
 #### `cd avp2server && chmod +x ./install.sh`<br /><br />
+#### `for Alpine: cd avp2server && chmod +x ./install_alpine-linux.sh`<br /><br />
+
 
 Now we simply launch the script
 
 #### `./install.sh`<br /><br />
+#### `for Alpine: ./install_alpine-linux.sh`<br /><br />
+
 
 This command downloads Docker, pulls the image, and sets up a new container for you.
 
